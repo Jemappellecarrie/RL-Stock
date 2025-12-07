@@ -42,7 +42,8 @@ class Downloader(object):
             print(f'processing {row["code"]} {row["code_name"]}')
             df_code = bs.query_history_k_data_plus(row["code"], self.fields,
                                                    start_date=self.date_start,
-                                                   end_date=self.date_end).get_data()
+                                                   end_date=self.date_end,
+                                                   adjustflag="2").get_data()
             df_code.to_csv(f'{self.output_dir}/{row["code"]}.{row["code_name"]}.csv', index=False)
         self.exit()
 
